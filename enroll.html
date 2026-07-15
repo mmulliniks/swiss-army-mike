@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Enroll — Kaleo Arts</title>
+<meta name="description" content="Pick the program that fits your family. Every class comes with a risk-free trial." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/kaleo.css" />
+</head>
+<body data-screen-label="Enroll">
+<div id="lights-slot"></div>
+<div id="nav-slot"></div>
+
+<main id="app"></main>
+
+<div id="footer-slot"></div>
+
+<script>window.__page = 'enroll';</script>
+<script src="assets/copy.js"></script>
+<script src="assets/kaleo.js"></script>
+<script src="assets/chrome.js"></script>
+<script src="assets/partials.js"></script>
+<script>
+  const C = window.KALEO_COPY;
+  const KP = window.KP;
+  const E = C.enroll;
+  const app = document.getElementById('app');
+
+  app.innerHTML = `
+    <!-- HERO -->
+    <section class="hero">
+      <div class="spotlight"></div>
+      <div class="container hero-inner">
+        <div class="eyebrow reveal">${E.hero.eyebrow}</div>
+        <h1 class="hero-title reveal r-d1">
+          ${E.hero.headline.pre}
+          <span class="italic">${E.hero.headline.italic}</span>
+          ${E.hero.headline.tail}
+        </h1>
+        <p class="hero-subhead reveal r-d2">${E.hero.subhead}</p>
+      </div>
+    </section>
+
+    <!-- PROGRAM TILES -->
+    <div class="container">
+      <div class="enroll-tiles">
+        ${C.programs.map((p, i) => `
+          <a class="enroll-tile reveal r-d${(i%3)+1}" href="${p.href}">
+            <div>
+              <div class="et-eye">No. ${String(i+1).padStart(2,'0')} \u00b7 ${p.grade}</div>
+              <h3>${p.name}</h3>
+              <p style="margin-top: 12px;">${p.short}</p>
+            </div>
+            <div class="et-foot">
+              <span>${p.price}</span>
+              <span class="et-arrow">${KP.arrowNE()}</span>
+            </div>
+          </a>
+        `).join('')}
+      </div>
+    </div>
+
+    <!-- iClassPro portal -->
+    <section class="container" style="padding: 60px 0;">
+      <div class="info-card reveal" style="text-align: center; padding: 56px 40px;">
+        <div class="ic-eye">\u25c6 Registration \u00b7 Powered by iClassPro</div>
+        <h3 style="font-size: 44px; margin-bottom: 16px;">See <em>live</em> class schedules.</h3>
+        <p style="font-size: 17px; max-width: 520px; margin: 0 auto 32px;">All Kaleo Arts classes, current availability, and secure registration are handled through our iClassPro portal \u2014 register, pay, and manage your family's account in one place.</p>
+        <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap; align-items:center;">
+          <a href="https://portal.iclasspro.com/kaleoarts/classes" target="_blank" rel="noopener" style="display:inline-block; padding:4px; border-radius:6px; transition:transform .2s, box-shadow .2s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 20px -6px rgba(0,0,0,0.4)';" onmouseout="this.style.transform=''; this.style.boxShadow='';">
+            <img style="width:173px; height:35px; border:0; display:block; border-radius:4px;" alt="Class Schedules" src="https://mktg.iclasspro.com/portal/ClassSchedules.png" />
+          </a>
+          <a class="btn btn-secondary" href="https://portal.iclasspro.com/kaleoarts/classes" target="_blank" rel="noopener">Open portal ${KP.arrow()}</a>
+        </div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.08em; color:rgba(244,233,210,.5); margin-top:20px; text-transform:uppercase;">Opens portal.iclasspro.com/kaleoarts in a new tab.</div>
+      </div>
+    </section>
+
+    <!-- NOT SURE WHICH FITS -->
+    <section class="lead-section container">
+      <div class="reveal">
+        <div class="ls-eye">\u2726 Help me choose</div>
+        <h2>${E.notSure.heading.pre}<br/><em>${E.notSure.heading.italic}</em></h2>
+        <p>${E.notSure.sub}</p>
+        <div class="info-card" style="margin-top: 32px;">
+          <div class="ic-eye">\u2726 What to expect</div>
+          <p style="font-family: 'Newsreader', serif; font-size: 17px; color: rgba(244,233,210,.85); font-style: italic; line-height: 1.5;">Fill out this quick form and we'll call or text you within the hour with a program recommendation based on your child's age, interests, and schedule.</p>
+        </div>
+      </div>
+      <div class="reveal r-d1">
+        <div class="lead-form">
+          <h3>${E.notSure.heading.pre} <em>${E.notSure.heading.italic}</em></h3>
+          <p class="lf-sub">${E.notSure.sub}</p>
+          <form onsubmit="event.preventDefault(); this.querySelector('button').innerHTML='\u2713 Sent \u2014 we\\'ll be in touch'; this.querySelector('button').classList.add('btn-gold');">
+            ${E.notSure.fields.map(f => `
+              <label class="field">
+                <label>${f.label}</label>
+                ${f.type === 'select' ? `
+                  <select name="${f.name}">
+                    <option value="">Choose one\u2026</option>
+                    ${(f.options || []).map(o => `<option>${o}</option>`).join('')}
+                  </select>
+                ` : `
+                  <input type="${f.type}" name="${f.name}" placeholder="${f.placeholder || ''}" />
+                `}
+              </label>
+            `).join('')}
+            <button class="btn btn-primary" type="submit">${E.notSure.cta} ${KP.arrow()}</button>
+          </form>
+          <div class="lead-form-note">or call (248) 555\u20130123 \u00b7 no obligation</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOCATION -->
+    ${KP.location()}
+
+    <!-- FINAL -->
+    ${KP.finalCta({
+      eye: 'RSVP',
+      heading: { pre: "You're", italic: 'invited.' },
+      body: "Come see what an invitation feels like. No audition required. No obligation. Just a conversation and a look around.",
+      primary: 'Enroll today',
+      secondary: 'Schedule a tour',
+    })}
+  `;
+  if (window.__observeReveal) window.__observeReveal();
+</script>
+</body>
+</html>

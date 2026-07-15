@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Classes — Show choir, tap, theater & more | Kaleo Arts</title>
+<meta name="description" content="Group classes shaped by community demand — from theater and group vocal to tap and choir club for adults." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/kaleo.css" />
+</head>
+<body data-screen-label="Classes">
+<div id="lights-slot"></div>
+<div id="nav-slot"></div>
+
+<main id="app"></main>
+
+<div id="footer-slot"></div>
+
+<script>window.__page = 'classes';</script>
+<script src="assets/copy.js"></script>
+<script src="assets/kaleo.js"></script>
+<script src="assets/chrome.js"></script>
+<script src="assets/partials.js"></script>
+<script>
+  const C = window.KALEO_COPY;
+  const KP = window.KP;
+  const K = C.classes;
+  const app = document.getElementById('app');
+
+  app.innerHTML = `
+    <!-- HERO -->
+    <section class="hero program-hero pink">
+      <div class="spotlight"></div>
+      <div class="container hero-inner">
+        <span class="accent-line"></span>
+        <div class="eyebrow reveal">${K.hero.eyebrow}</div>
+        <h1 class="hero-title reveal r-d1">
+          ${K.hero.headline.pre}
+          <span class="italic">${K.hero.headline.italic}</span>
+        </h1>
+        <p class="hero-subhead reveal r-d2">${K.hero.subhead}</p>
+        <div class="cta-row reveal r-d3">
+          <a class="btn btn-primary" href="#lineup">${K.hero.cta} ${KP.arrow()}</a>
+          <a class="btn btn-secondary" href="#lead">Ask about openings</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Photo strip -->
+    <div class="container">
+      <div class="photo-strip">
+        <div class="ph ph-photo reveal"><div class="ph-tag">PHOTO \u00b7 CLASS IN SESSION</div><span>Tap class</span></div>
+        <div class="ph ph-video reveal r-d1"><div class="ph-tag">VIDEO \u00b7 CHOIR CLUB</div><div class="ph-play"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M6 4l10 6-10 6z" fill="currentColor"/></svg></div></div>
+        <div class="ph ph-photo reveal r-d2"><div class="ph-tag">PHOTO \u00b7 GUEST ARTIST</div><span>Rotating guest teacher</span></div>
+      </div>
+    </div>
+
+    <!-- LINEUP -->
+    <section id="lineup" style="padding: 100px 0;">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="now-showing reveal">This session</div>
+            <h2 class="reveal r-d1">${K.lineup.heading.pre} <em>${K.lineup.heading.italic}</em></h2>
+          </div>
+          <p class="lede reveal r-d2">Six classes running right now, plus new offerings that rotate in each season. If it's not listed, ask \u2014 we'll tell you what's coming.</p>
+        </div>
+        <div class="prog-list">
+          ${K.lineup.items.map((c, i) => `
+            <a class="prog-row color-${c.color} reveal r-d${(i%3)+1}" href="#lead">
+              <div class="prog-num">No. ${String(i+1).padStart(2,'0')}</div>
+              <div class="prog-name">${c.name}</div>
+              <div class="prog-desc">${c.body}</div>
+              <div class="prog-meta">
+                <strong>${c.audience}</strong>
+              </div>
+              <div class="prog-arrow">${KP.arrowNE()}</div>
+            </a>
+          `).join('')}
+        </div>
+      </div>
+    </section>
+
+    <!-- SHAPED BY YOU -->
+    <div class="container">
+      <section class="two-col reveal">
+        <h2>${K.shapedByYou.heading.pre}<br/><span class="italic">${K.shapedByYou.heading.italic}</span></h2>
+        <div class="two-col-body">
+          ${K.shapedByYou.body.map(p => `<p>${p}</p>`).join('')}
+          <a class="btn btn-primary" href="#lead">Suggest a class ${KP.arrow()}</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- LEAD FORM -->
+    <section id="lead" class="lead-section container">
+      <div class="reveal">
+        <div class="ls-eye">\u2726 Find your class</div>
+        <h2>${K.leadForm.heading.pre}<br/><em>${K.leadForm.heading.italic}</em></h2>
+        <p>${K.leadForm.sub}</p>
+        ${KP.iClassEmbed('Group Classes')}
+      </div>
+      <div class="reveal r-d1">${KP.leadForm(K.leadForm)}</div>
+    </section>
+
+    <!-- FINAL -->
+    ${KP.finalCta({
+      eye: 'RSVP',
+      heading: { pre: "You're", italic: 'invited.' },
+      body: "Come see what an invitation feels like. No audition required. No obligation. Just a conversation and a look around.",
+      primary: 'Enroll today',
+      secondary: 'Schedule a tour',
+    })}
+  `;
+  if (window.__observeReveal) window.__observeReveal();
+</script>
+</body>
+</html>

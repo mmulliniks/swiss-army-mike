@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Songwriters — Middle & high school original music | Kaleo Arts</title>
+<meta name="description" content="Middle and high school students collaborate to write original music, guided by professional songwriters. No audition required. Some songs get professionally recorded and released." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/kaleo.css" />
+</head>
+<body data-screen-label="Songwriters">
+<div id="lights-slot"></div>
+<div id="nav-slot"></div>
+
+<main id="app"></main>
+
+<div id="footer-slot"></div>
+
+<script>window.__page = 'songwriters';</script>
+<script src="assets/copy.js"></script>
+<script src="assets/kaleo.js"></script>
+<script src="assets/chrome.js"></script>
+<script src="assets/partials.js"></script>
+<script>
+  const C = window.KALEO_COPY;
+  const KP = window.KP;
+  const K = C.songwriters;
+  const app = document.getElementById('app');
+
+  app.innerHTML = `
+    <!-- HERO -->
+    <section class="hero program-hero gold">
+      <div class="spotlight"></div>
+      <div class="container hero-inner">
+        <span class="accent-line"></span>
+        <div class="eyebrow reveal">${K.hero.eyebrow}</div>
+        <h1 class="hero-title reveal r-d1">
+          ${K.hero.headline.pre}
+          <span class="italic">${K.hero.headline.italic}</span>
+          ${K.hero.headline.tail}
+        </h1>
+        <p class="hero-subhead reveal r-d2">${K.hero.subhead}</p>
+        <div class="cta-row reveal r-d3">
+          <a class="btn btn-primary" href="#lead">${K.hero.cta} ${KP.arrow()}</a>
+          <a class="btn btn-secondary" href="#albums">Hear what students made</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Photo strip -->
+    <div class="container">
+      <div class="photo-strip">
+        <div class="ph ph-photo reveal"><div class="ph-tag">PHOTO \u00b7 SONGWRITING SESSION</div><span>Students at the piano</span></div>
+        <div class="ph ph-video reveal r-d1"><div class="ph-tag">VIDEO \u00b7 LIVE PERFORMANCE</div><div class="ph-play"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M6 4l10 6-10 6z" fill="currentColor"/></svg></div></div>
+        <div class="ph ph-photo reveal r-d2"><div class="ph-tag">PHOTO \u00b7 IN STUDIO</div><span>Recording session</span></div>
+      </div>
+    </div>
+
+    <!-- PULL QUOTE -->
+    ${KP.pullquote(K.pullQuote)}
+
+    <!-- HOW A SESSION WORKS -->
+    <section class="four-col-strip">
+      <div class="container">
+        <h2 class="fc-head reveal">${K.howItWorks.heading.pre} <em>${K.howItWorks.heading.italic}</em></h2>
+        <div class="four-col-grid" style="grid-template-columns: repeat(3, 1fr);">
+          ${K.howItWorks.items.map((it, i) => `
+            <div class="four-col-item reveal r-d${i+1}">
+              <div class="num">${['i','ii','iii'][i]}</div>
+              <h3>${it.title}</h3>
+              <p>${it.body}</p>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY IT MATTERS -->
+    <div class="container">
+      <section class="two-col reveal">
+        <h2>${K.whyItMatters.heading.pre}<br/><span class="italic">${K.whyItMatters.heading.italic}</span></h2>
+        <div class="two-col-body">
+          ${K.whyItMatters.body.map(p => `<p>${p}</p>`).join('')}
+        </div>
+      </section>
+    </div>
+
+    <!-- ALBUMS -->
+    <section id="albums" class="container">
+      <div class="section-head" style="margin-top: 80px;">
+        <div>
+          <div class="now-showing reveal">On streaming platforms</div>
+          <h2 class="reveal r-d1">${K.albums.heading.pre} <em>${K.albums.heading.italic}</em></h2>
+        </div>
+        <p class="lede reveal r-d2">${K.albums.sub}</p>
+      </div>
+      <div class="albums">
+        ${K.albums.items.map((a, i) => `
+          <a class="album reveal r-d${(i%4)+1}" href="#">
+            <div class="num">Vol. ${String(i+1).padStart(2,'0')}</div>
+            <h4>${a.title}</h4>
+            <small>${a.year}</small>
+          </a>
+        `).join('')}
+      </div>
+      <p style="text-align:center; font-family:'JetBrains Mono',monospace; font-size:12px; color:rgba(244,233,210,.55); letter-spacing:0.08em; text-transform:uppercase; margin: 24px 0 40px;">
+        \u25c6 Album artwork placeholders \u2014 link each to Spotify / Apple Music
+      </p>
+    </section>
+
+    <!-- ENROLL OFFER -->
+    <section id="offer" class="container">
+      <div class="enroll-offer">
+        <div class="reveal">
+          <div class="price">${K.enroll.priceEye}</div>
+          <div class="price-big" style="font-size:56px;">${K.enroll.priceBig}</div>
+          <p class="price-note">${K.enroll.priceNote}</p>
+          <h2>${K.enroll.heading.pre}<br/><em>${K.enroll.heading.italic}</em> ${K.enroll.heading.tail}</h2>
+        </div>
+        <div class="reveal r-d1">
+          <ul class="includes">
+            ${K.enroll.includes.map(inc => `<li>${inc}</li>`).join('')}
+          </ul>
+          <a class="btn btn-primary" href="#lead" style="width:100%; justify-content:center;">${K.enroll.cta} ${KP.arrow()}</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEAD FORM -->
+    <section id="lead" class="lead-section container">
+      <div class="reveal">
+        <div class="ls-eye">\u2726 Next session</div>
+        <h2>${K.leadForm.heading.pre}<br/><em>${K.leadForm.heading.italic}</em></h2>
+        <p>${K.leadForm.sub}</p>
+        ${KP.iClassEmbed('Songwriters')}
+      </div>
+      <div class="reveal r-d1">${KP.leadForm(K.leadForm)}</div>
+    </section>
+
+    <!-- FINAL -->
+    ${KP.finalCta({
+      eye: 'RSVP',
+      heading: { pre: "You're", italic: 'invited.' },
+      body: "Come see what an invitation feels like. No audition required. No obligation. Just a conversation and a look around.",
+      primary: 'Enroll today',
+      secondary: 'Schedule a tour',
+    })}
+  `;
+  if (window.__observeReveal) window.__observeReveal();
+</script>
+</body>
+</html>

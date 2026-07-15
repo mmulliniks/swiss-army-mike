@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kaleo Arts — Where art, joy & community collide.</title>
+<meta name="description" content="A performing arts home in Oakland Township, MI. No auditions, no competitions, no costume fees — for kids ages 3 through 18, plus adults." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/kaleo.css" />
+</head>
+<body data-screen-label="Home">
+<div id="lights-slot"></div>
+<div id="nav-slot"></div>
+
+<main id="app"></main>
+
+<div id="footer-slot"></div>
+
+<script>window.__page = 'home';</script>
+<script src="assets/copy.js"></script>
+<script src="assets/kaleo.js"></script>
+<script src="assets/chrome.js"></script>
+<script src="assets/partials.js"></script>
+<script>
+  const C = window.KALEO_COPY;
+  const KP = window.KP;
+  const H = C.home;
+  const app = document.getElementById('app');
+
+  app.innerHTML = `
+    <!-- HERO -->
+    <section class="hero">
+      <div class="spotlight"></div>
+      <div class="container hero-inner">
+        <div class="eyebrow reveal">${H.hero.eyebrow}</div>
+        <h1 class="hero-title reveal r-d1">
+          ${H.hero.headlineParts.lead}
+          <span class="italic">${H.hero.headlineParts.one}</span><br/>
+          <span class="glow">${H.hero.headlineParts.two}</span> ${H.hero.headlineParts.amp}
+          <span class="italic">${H.hero.headlineParts.three}</span><br/>
+          ${H.hero.headlineParts.tail}
+        </h1>
+        <div class="hero-row reveal r-d2">
+          <div class="cta-row">
+            <a class="btn btn-primary" href="enroll.html">Enroll today ${KP.arrow()}</a>
+            <a class="btn btn-secondary" href="#programs">Explore programs</a>
+          </div>
+          <div class="hero-side">
+            <em>${H.hero.side.preface}</em> ${H.hero.side.body} <em>${H.hero.side.emphasis}</em>
+            <small>${H.hero.side.note}</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TICKER -->
+    <div class="reveal r-d3">${KP.ticker(H.hero.ticker)}</div>
+
+    <!-- DON'T -->
+    <section class="dont-strip">
+      <div class="container">
+        <div class="eyebrow reveal">${H.dont.eyebrow}</div>
+        <h2 class="dont-head reveal r-d1">
+          ${H.dont.heading.pre}<br/>we <span class="strike">${H.dont.heading.strike}</span> ${H.dont.heading.tail}
+        </h2>
+        <div class="dont-grid">
+          ${H.dont.items.map((it, i) => `
+            <div class="dont-card reveal r-d${i+1}">
+              <div class="num">No. ${String(i+1).padStart(2,'0')}</div>
+              <h3>No <em>${it.title}</em>.</h3>
+              <p>${it.body}</p>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </section>
+
+    <!-- APPROACH -->
+    <div class="container">
+      <section class="two-col reveal">
+        <h2>${H.approach.heading.pre}<br/><span class="italic">${H.approach.heading.italic}</span><br/>${H.approach.heading.tail}</h2>
+        <div class="two-col-body">
+          <p>${H.approach.body}</p>
+          <a class="btn btn-primary" href="enroll.html">${H.approach.cta} ${KP.arrow()}</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- PROGRAMS -->
+    <section id="programs" style="padding: 120px 0 80px;">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="now-showing reveal">Now Showing</div>
+            <h2 class="reveal r-d1">Five <em>ways</em> to join.</h2>
+          </div>
+          <p class="lede reveal r-d2">From first steps in music at age three to writing original songs in high school \u2014 we meet every kid where they are, and take them somewhere new.</p>
+        </div>
+        <div class="prog-list">
+          ${C.programs.map((p, i) => `
+            <a class="prog-row color-${p.color} reveal r-d${(i%3)+1}" href="${p.href}">
+              <div class="prog-num">No. ${String(i+1).padStart(2,'0')}</div>
+              <div class="prog-name">${p.name}</div>
+              <div class="prog-desc">${p.body}</div>
+              <div class="prog-meta">
+                <strong>${p.grade}</strong>
+                ${p.price}
+              </div>
+              <div class="prog-arrow">${KP.arrowNE()}</div>
+            </a>
+          `).join('')}
+        </div>
+      </div>
+    </section>
+
+    <!-- HEART -->
+    ${KP.heart(H.heart)}
+
+    <!-- TESTIMONIALS -->
+    <section class="testi">
+      <div class="container">
+        <div class="eyebrow reveal">\u2726 Voices from our families</div>
+        <h2 class="testi-head reveal r-d1">Twenty years, <em>one relationship</em> at a time.</h2>
+        <div class="testi-grid">
+          ${H.testimonials.map((t, i) => `
+            <div class="testi-card reveal r-d${i+1}">
+              <p>\u201c${t.quote}\u201d</p>
+              <cite>\u2014 ${t.who}</cite>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </section>
+
+    <!-- LOCATION -->
+    ${KP.location()}
+
+    <!-- FINAL -->
+    ${KP.finalCta(H.finalCta)}
+  `;
+  if (window.__observeReveal) window.__observeReveal();
+</script>
+</body>
+</html>

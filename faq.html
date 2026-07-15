@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FAQ — Kaleo Arts</title>
+<meta name="description" content="Answers about trial classes, ages and grades, cost, financial assistance, and more." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/kaleo.css" />
+</head>
+<body data-screen-label="FAQ">
+<div id="lights-slot"></div>
+<div id="nav-slot"></div>
+
+<main id="app"></main>
+
+<div id="footer-slot"></div>
+
+<script>window.__page = 'faq';</script>
+<script src="assets/copy.js"></script>
+<script src="assets/kaleo.js"></script>
+<script src="assets/chrome.js"></script>
+<script src="assets/partials.js"></script>
+<script>
+  const C = window.KALEO_COPY;
+  const KP = window.KP;
+  const F = C.faq;
+  const app = document.getElementById('app');
+
+  app.innerHTML = `
+    <!-- HERO -->
+    <section class="hero">
+      <div class="spotlight"></div>
+      <div class="container hero-inner">
+        <div class="eyebrow reveal">${F.hero.eyebrow}</div>
+        <h1 class="hero-title reveal r-d1">
+          ${F.hero.headline.pre}<br/>
+          <span class="italic">${F.hero.headline.italic}</span>
+        </h1>
+        <p class="hero-subhead reveal r-d2">${F.hero.subhead}</p>
+      </div>
+    </section>
+
+    <!-- FAQ ACCORDION -->
+    <section class="faq-section">
+      <div class="container">
+        ${F.groups.map((g, gi) => `
+          <div class="faq-group reveal">
+            <div class="faq-group-head">\u25c6 ${g.heading}</div>
+            ${g.items.map((it, ii) => `
+              <div class="faq-item ${gi === 0 && ii === 0 ? 'open' : ''}">
+                <button class="faq-q">
+                  ${it.q}
+                  <span class="faq-toggle">
+                    <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                  </span>
+                </button>
+                <div class="faq-a">${it.a}</div>
+              </div>
+            `).join('')}
+          </div>
+        `).join('')}
+
+        <div class="info-card reveal" style="margin-top: 40px; text-align: center; padding: 60px 40px;">
+          <h3 style="font-size: 44px; margin-bottom: 16px;">${F.closing.heading}</h3>
+          <p style="font-size: 19px; max-width: 480px; margin: 0 auto 32px;">${F.closing.body}</p>
+          <a class="btn btn-primary" href="enroll.html">${F.closing.cta} ${KP.arrow()}</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL -->
+    ${KP.finalCta({
+      eye: 'RSVP',
+      heading: { pre: "You're", italic: 'invited.' },
+      body: "Come see what an invitation feels like. No audition required. No obligation. Just a conversation and a look around.",
+      primary: 'Enroll today',
+      secondary: 'Schedule a tour',
+    })}
+  `;
+  if (window.__observeReveal) window.__observeReveal();
+</script>
+</body>
+</html>

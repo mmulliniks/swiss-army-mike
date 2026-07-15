@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>About — Kaleo Arts</title>
+<meta name="description" content="Twenty years of teaching in this community, one relationship at a time. Founder Renee Mulliniks on the belief that started Kaleo Arts." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/kaleo.css" />
+</head>
+<body data-screen-label="About">
+<div id="lights-slot"></div>
+<div id="nav-slot"></div>
+
+<main id="app"></main>
+
+<div id="footer-slot"></div>
+
+<script>window.__page = 'about';</script>
+<script src="assets/copy.js"></script>
+<script src="assets/kaleo.js"></script>
+<script src="assets/chrome.js"></script>
+<script src="assets/partials.js"></script>
+<script>
+  const C = window.KALEO_COPY;
+  const KP = window.KP;
+  const A = C.about;
+  const app = document.getElementById('app');
+
+  app.innerHTML = `
+    <!-- HERO -->
+    <section class="hero">
+      <div class="spotlight"></div>
+      <div class="container hero-inner">
+        <div class="eyebrow reveal">${A.hero.eyebrow}</div>
+        <h1 class="hero-title reveal r-d1" style="max-width: 20ch;">
+          ${A.hero.headline.pre}
+          <span class="italic">${A.hero.headline.italic}</span>
+          ${A.hero.headline.tail}
+        </h1>
+        <p class="hero-subhead reveal r-d2">${A.hero.subhead}</p>
+      </div>
+    </section>
+
+    <!-- Photo of founder -->
+    <div class="container" style="padding: 40px 0 80px;">
+      <div class="feature-grid-2">
+        <div class="ph ph-portrait reveal">
+          <div class="ph-tag">PHOTO \u00b7 RENEE MULLINIKS</div>
+          <span>Portrait of the founder</span>
+        </div>
+        <div class="feature-card reveal r-d1" style="display:flex; flex-direction:column; justify-content:center;">
+          <div class="fc-eye">\u2726 Founder</div>
+          <h3><em>Renee</em> Mulliniks</h3>
+          <p style="font-family: 'Newsreader', serif; font-size: 20px; font-style: italic; line-height: 1.45;">"Every child deserves a place to build confidence and discover their own creativity. That belief is why we started, and it's why we're still here twenty years later."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY -->
+    <div class="container">
+      <section class="two-col reveal" style="border-top: none; padding-top: 40px;">
+        <h2>${A.story.heading.pre}<br/><span class="italic">${A.story.heading.italic}</span></h2>
+        <div class="two-col-body">
+          ${A.story.body.map(p => `<p>${p}</p>`).join('')}
+          <p style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.08em; color: var(--gold); text-transform: uppercase; margin-top: 32px;">${A.story.signature}</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- HEART -->
+    ${KP.heart(A.heart)}
+
+    <!-- NONPROFIT PARTNERSHIP -->
+    <section class="container" style="padding: 100px 0;">
+      <div class="section-head" style="margin-bottom: 40px;">
+        <div>
+          <div class="eyebrow reveal">${A.nonprofit.eyebrow}</div>
+          <h2 class="reveal r-d1">${A.nonprofit.heading.pre}<br/><em>${A.nonprofit.heading.italic}</em></h2>
+        </div>
+        <p class="lede reveal r-d2">Together with Abide Ministries, Kensington Church, and a growing donor community, we operate a portion of Kaleo as a nonprofit.</p>
+      </div>
+      <div class="two-col-body reveal" style="max-width: 720px;">
+        ${A.nonprofit.body.map(p => `<p>${p}</p>`).join('')}
+      </div>
+
+      <div style="margin: 60px 0;">
+        <div class="stat-strip" style="grid-template-columns: repeat(2, 1fr);">
+          ${A.nonprofit.stats.map(s => `
+            <div class="stat reveal">
+              <div class="n">${s.n}</div>
+              <div class="lbl">${s.lbl}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div class="info-card reveal">
+        <div class="ic-eye">\u2726 Support Kaleo's community programs</div>
+        <p>${A.nonprofit.donationNote}</p>
+        <div style="margin-top: 24px;">
+          <a class="btn btn-primary" href="#">${A.nonprofit.cta} ${KP.arrow()}</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL -->
+    ${KP.finalCta({
+      eye: 'RSVP',
+      heading: { pre: "You're", italic: 'invited.' },
+      body: "Come see what an invitation feels like. No audition required. No obligation. Just a conversation and a look around.",
+      primary: 'Enroll today',
+      secondary: 'Schedule a tour',
+    })}
+  `;
+  if (window.__observeReveal) window.__observeReveal();
+</script>
+</body>
+</html>
